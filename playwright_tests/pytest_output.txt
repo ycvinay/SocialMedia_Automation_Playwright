@@ -1,0 +1,517 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.12.8, pytest-7.4.3, pluggy-1.6.0 -- F:\FlaskSociailMedia\playwright_tests\playwright_venv\Scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.8', 'Platform': 'Windows-11-10.0.26100-SP0', 'Packages': {'pytest': '7.4.3', 'pluggy': '1.6.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'anyio': '4.12.0', 'Faker': '20.1.0', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.4.3', 'rerunfailures': '12.0', 'timeout': '2.2.0', 'xdist': '3.5.0'}, 'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-22', 'Base URL': ''}
+rootdir: F:\FlaskSociailMedia\playwright_tests
+configfile: pytest.ini
+plugins: allure-pytest-2.13.2, anyio-4.12.0, Faker-20.1.0, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.4.3, rerunfailures-12.0, timeout-2.2.0, xdist-3.5.0
+timeout: 300.0s
+timeout method: thread
+timeout func_only: False
+collecting ... collected 25 items
+
+tests/test_auth.py::TestLoginPageElements::test_login_page_loads_successfully[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:05 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:06 [    INFO] Navigated to login page
+2025-12-04 17:37:06 [    INFO] \u2713 Test passed: Login page loads successfully\nPASSED                                                                   [  4%]
+tests/test_auth.py::TestLoginPageElements::test_login_page_form_elements[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:06 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:07 [    INFO] Navigated to login page
+2025-12-04 17:37:07 [    INFO] \u2713 Test passed: Login page form elements present\nPASSED                                                                   [  8%]
+tests/test_auth.py::TestLoginPageElements::test_login_button_initially_enabled[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:07 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:08 [    INFO] Navigated to login page
+2025-12-04 17:37:08 [    INFO] \u2713 Test passed: Login button initially enabled\nPASSED                                                                   [ 12%]
+tests/test_auth.py::TestLoginFunctionality::test_login_with_valid_credentials[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:08 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:09 [    INFO] Navigated to login page
+2025-12-04 17:37:09 [    INFO] Logging in with username: playwrighttest
+2025-12-04 17:37:09 [    INFO] Entering username: playwrighttest
+2025-12-04 17:37:09 [    INFO] Entering password
+2025-12-04 17:37:09 [    INFO] Clicking login button
+2025-12-04 17:37:11 [    INFO] Login successful - redirected to home page
+2025-12-04 17:37:11 [    INFO] \u2713 Test passed: Login with valid credentials\nPASSED                                                                   [ 16%]
+tests/test_auth.py::TestLoginFunctionality::test_login_with_invalid_username[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:12 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:12 [    INFO] Navigated to login page
+2025-12-04 17:37:12 [    INFO] Logging in with username: nonexistent_user_12345
+2025-12-04 17:37:12 [    INFO] Entering username: nonexistent_user_12345
+2025-12-04 17:37:12 [    INFO] Entering password
+2025-12-04 17:37:12 [    INFO] Clicking login button
+2025-12-04 17:37:20 [ WARNING] Login failed - not redirected to home page
+2025-12-04 17:37:23 [    INFO] Screenshot saved: screenshots\test_login_with_invalid_username[chromium]_20251204_173723.png
+FAILED                                                                   [ 20%]
+tests/test_auth.py::TestLoginFunctionality::test_login_with_invalid_password[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:24 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:24 [    INFO] Navigated to login page
+2025-12-04 17:37:24 [    INFO] Logging in with username: playwrighttest
+2025-12-04 17:37:24 [    INFO] Entering username: playwrighttest
+2025-12-04 17:37:24 [    INFO] Entering password
+2025-12-04 17:37:24 [    INFO] Clicking login button
+2025-12-04 17:37:32 [ WARNING] Login failed - not redirected to home page
+2025-12-04 17:37:36 [    INFO] Screenshot saved: screenshots\test_login_with_invalid_password[chromium]_20251204_173735.png
+FAILED                                                                   [ 24%]
+tests/test_auth.py::TestLoginFunctionality::test_login_with_empty_username[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:36 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:37 [    INFO] Navigated to login page
+2025-12-04 17:37:37 [    INFO] Entering password
+2025-12-04 17:37:37 [    INFO] Clicking login button
+2025-12-04 17:37:42 [ WARNING] Login failed - not redirected to home page
+2025-12-04 17:37:42 [    INFO] \u2713 Test passed: Login with empty username shows validation error\nPASSED                                                                   [ 28%]
+tests/test_auth.py::TestLoginFunctionality::test_login_with_empty_password[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:42 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:43 [    INFO] Navigated to login page
+2025-12-04 17:37:43 [    INFO] Entering username: testuser1
+2025-12-04 17:37:43 [    INFO] Clicking login button
+2025-12-04 17:37:49 [ WARNING] Login failed - not redirected to home page
+2025-12-04 17:37:49 [    INFO] \u2713 Test passed: Login with empty password shows validation error\nPASSED                                                                   [ 32%]
+tests/test_auth.py::TestLoginFunctionality::test_login_with_both_fields_empty[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:49 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:50 [    INFO] Navigated to login page
+2025-12-04 17:37:50 [    INFO] Clicking login button
+2025-12-04 17:37:56 [ WARNING] Login failed - not redirected to home page
+2025-12-04 17:37:56 [    INFO] \u2713 Test passed: Login with both fields empty shows validation errors\nPASSED                                                                   [ 36%]
+tests/test_auth.py::TestLoginNavigation::test_navigate_to_signup_from_login[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:56 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:57 [    INFO] Navigated to login page
+2025-12-04 17:37:57 [    INFO] Clicking signup link
+2025-12-04 17:37:58 [    INFO] \u2713 Test passed: Navigate to signup from login\nPASSED                                                                   [ 40%]
+tests/test_auth.py::TestLoginNavigation::test_navigate_to_forgot_password_from_login[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:37:58 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:59 [    INFO] Navigated to login page
+2025-12-04 17:37:59 [    INFO] Clicking forgot password link
+2025-12-04 17:38:00 [    INFO] \u2713 Test passed: Navigate to forgot password from login\nPASSED                                                                   [ 44%]
+tests/test_auth.py::TestLoginPasswordVisibility::test_password_hidden_by_default[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:00 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:38:01 [    INFO] Navigated to login page
+2025-12-04 17:38:01 [    INFO] Entering password
+2025-12-04 17:38:01 [    INFO] \u2713 Test passed: Password hidden by default\nPASSED                                                                   [ 48%]
+tests/test_auth.py::TestLoginPasswordVisibility::test_toggle_password_visibility[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:02 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:38:02 [    INFO] Navigated to login page
+2025-12-04 17:38:02 [    INFO] Entering password
+2025-12-04 17:38:02 [    INFO] Toggling password visibility
+2025-12-04 17:38:02 [    INFO] Toggling password visibility
+2025-12-04 17:38:03 [    INFO] \u2713 Test passed: Password visibility toggle works\nPASSED                                                                   [ 52%]
+tests/test_auth.py::TestSignupPageElements::test_signup_page_loads_successfully[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:03 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:04 [    INFO] Navigated to signup page
+2025-12-04 17:38:04 [    INFO] \u2713 Test passed: Signup page loads successfully\nPASSED                                                                   [ 56%]
+tests/test_auth.py::TestSignupPageElements::test_signup_page_form_elements[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:04 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:05 [    INFO] Navigated to signup page
+2025-12-04 17:38:05 [    INFO] \u2713 Test passed: Signup page form elements present\nPASSED                                                                   [ 60%]
+tests/test_auth.py::TestSignupFunctionality::test_signup_with_valid_data[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:05 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:06 [    INFO] Navigated to signup page
+2025-12-04 17:38:06 [    INFO] Signing up with username: zsanchez6134
+2025-12-04 17:38:06 [    INFO] Entering name: Elizabeth Wilson
+2025-12-04 17:38:06 [    INFO] Entering username: zsanchez6134
+2025-12-04 17:38:06 [    INFO] Entering email: zsanchez6134@example.com
+2025-12-04 17:38:06 [    INFO] Entering password
+2025-12-04 17:38:06 [    INFO] Clicking signup button
+2025-12-04 17:38:09 [    INFO] Signup successful - redirected to login page
+2025-12-04 17:38:09 [    INFO] \u2713 Test passed: Signup with valid data\nPASSED                                                                   [ 64%]
+tests/test_auth.py::TestSignupFunctionality::test_signup_with_existing_username[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:09 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:10 [    INFO] Navigated to signup page
+2025-12-04 17:38:10 [    INFO] Signing up with username: playwrighttest
+2025-12-04 17:38:10 [    INFO] Entering name: New Test User
+2025-12-04 17:38:10 [    INFO] Entering username: playwrighttest
+2025-12-04 17:38:10 [    INFO] Entering email: newemail123@example.com
+2025-12-04 17:38:10 [    INFO] Entering password
+2025-12-04 17:38:10 [    INFO] Clicking signup button
+2025-12-04 17:38:18 [ WARNING] Signup failed - not redirected to login page
+2025-12-04 17:38:21 [    INFO] Screenshot saved: screenshots\test_signup_with_existing_username[chromium]_20251204_173821.png
+FAILED                                                                   [ 68%]
+tests/test_auth.py::TestSignupFunctionality::test_signup_with_existing_email[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:21 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:22 [    INFO] Navigated to signup page
+2025-12-04 17:38:22 [    INFO] Signing up with username: newusermichele537290
+2025-12-04 17:38:22 [    INFO] Entering name: New Test User
+2025-12-04 17:38:22 [    INFO] Entering username: newusermichele537290
+2025-12-04 17:38:22 [    INFO] Entering email: playwrighttest@example.com
+2025-12-04 17:38:22 [    INFO] Entering password
+2025-12-04 17:38:22 [    INFO] Clicking signup button
+2025-12-04 17:38:30 [ WARNING] Signup failed - not redirected to login page
+2025-12-04 17:38:33 [    INFO] Screenshot saved: screenshots\test_signup_with_existing_email[chromium]_20251204_173833.png
+FAILED                                                                   [ 72%]
+tests/test_auth.py::TestSignupFunctionality::test_signup_with_short_password[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:34 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:34 [    INFO] Navigated to signup page
+2025-12-04 17:38:34 [    INFO] Signing up with username: payneholly7997
+2025-12-04 17:38:34 [    INFO] Entering name: Matthew Price
+2025-12-04 17:38:35 [    INFO] Entering username: payneholly7997
+2025-12-04 17:38:35 [    INFO] Entering email: payneholly7997@example.com
+2025-12-04 17:38:35 [    INFO] Entering password
+2025-12-04 17:38:35 [    INFO] Clicking signup button
+2025-12-04 17:38:42 [ WARNING] Signup failed - not redirected to login page
+2025-12-04 17:38:42 [    INFO] \u2713 Test passed: Signup with short password fails\nPASSED                                                                   [ 76%]
+tests/test_auth.py::TestSignupFieldValidation::test_name_validation_on_blur[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:42 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:43 [    INFO] Navigated to signup page
+2025-12-04 17:38:43 [    INFO] Entering name: Test123
+2025-12-04 17:38:43 [    INFO] \u2713 Test passed: Name validation on blur\nPASSED                                                                   [ 80%]
+tests/test_auth.py::TestSignupFieldValidation::test_email_validation_on_blur[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:44 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:45 [    INFO] Navigated to signup page
+2025-12-04 17:38:45 [    INFO] Entering email: notanemail
+2025-12-04 17:38:46 [    INFO] \u2713 Test passed: Email validation on blur\nPASSED                                                                   [ 84%]
+tests/test_auth.py::TestSignupFieldValidation::test_valid_email_shows_success[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:46 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:48 [    INFO] Navigated to signup page
+2025-12-04 17:38:48 [    INFO] Entering email: valid@example.com
+2025-12-04 17:38:48 [    INFO] \u2713 Test passed: Valid email shows success\nPASSED                                                                   [ 88%]
+tests/test_auth.py::TestSignupNavigation::test_navigate_to_login_from_signup[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:48 [    INFO] Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:50 [    INFO] Navigated to signup page
+2025-12-04 17:38:50 [    INFO] Clicking login link
+2025-12-04 17:38:51 [    INFO] \u2713 Test passed: Navigate to login from signup\nPASSED                                                                   [ 92%]
+tests/test_auth.py::TestLogout::test_logout_functionality[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:38:51 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:38:53 [    INFO] Navigated to login page
+2025-12-04 17:38:53 [    INFO] Logging in with username: playwrighttest
+2025-12-04 17:38:53 [    INFO] Entering username: playwrighttest
+2025-12-04 17:38:53 [    INFO] Entering password
+2025-12-04 17:38:53 [    INFO] Clicking login button
+2025-12-04 17:38:56 [    INFO] Login successful - redirected to home page
+2025-12-04 17:39:28 [    INFO] Screenshot saved: screenshots\test_logout_functionality[chromium]_20251204_173928.png
+FAILED                                                                   [ 96%]
+tests/test_auth.py::TestLogout::test_logout_clears_session[chromium] 
+-------------------------------- live log call --------------------------------
+2025-12-04 17:39:28 [    INFO] Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:39:30 [    INFO] Navigated to login page
+2025-12-04 17:39:30 [    INFO] Logging in with username: playwrighttest
+2025-12-04 17:39:30 [    INFO] Entering username: playwrighttest
+2025-12-04 17:39:30 [    INFO] Entering password
+2025-12-04 17:39:30 [    INFO] Clicking login button
+2025-12-04 17:39:33 [    INFO] Login successful - redirected to home page
+2025-12-04 17:39:34 [    INFO] Screenshot saved: screenshots\test_logout_clears_session[chromium]_20251204_173934.png
+FAILED                                                                   [100%]
+
+================================== FAILURES ===================================
+______ TestLoginFunctionality.test_login_with_invalid_username[chromium] ______
+tests\test_auth.py:102: in test_login_with_invalid_username
+    assert login_page.is_error_toast_displayed(), "Error toast should be displayed"
+E   AssertionError: Error toast should be displayed
+E   assert False
+E    +  where False = <bound method LoginPage.is_error_toast_displayed of <pages.login_page.LoginPage object at 0x000001979BB6ED80>>()
+E    +    where <bound method LoginPage.is_error_toast_displayed of <pages.login_page.LoginPage object at 0x000001979BB6ED80>> = <pages.login_page.LoginPage object at 0x000001979BB6ED80>.is_error_toast_displayed
+---------------------------- Captured stderr call -----------------------------
+2025-12-04 17:37:12,115 - pages.base_page - INFO - Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:12,788 - pages.login_page - INFO - Navigated to login page
+2025-12-04 17:37:12,789 - pages.login_page - INFO - Logging in with username: nonexistent_user_12345
+2025-12-04 17:37:12,789 - pages.login_page - INFO - Entering username: nonexistent_user_12345
+2025-12-04 17:37:12,789 - pages.base_page - DEBUG - Filling '#username' with: nonexistent_user_12345
+2025-12-04 17:37:12,825 - pages.login_page - INFO - Entering password
+2025-12-04 17:37:12,826 - pages.base_page - DEBUG - Filling '#password' with: Test@123456
+2025-12-04 17:37:12,846 - pages.login_page - INFO - Clicking login button
+2025-12-04 17:37:12,846 - pages.base_page - DEBUG - Clicking element: #loginForm button[type='submit']
+2025-12-04 17:37:12,910 - pages.base_page - DEBUG - Waiting for 2500ms
+2025-12-04 17:37:15,423 - pages.base_page - DEBUG - Waiting for URL: **/home.html
+2025-12-04 17:37:20,444 - pages.login_page - WARNING - Login failed - not redirected to home page
+2025-12-04 17:37:20,444 - pages.base_page - DEBUG - Waiting for selector '#loginFailToast.show' to be visible
+------------------------------ Captured log call ------------------------------
+INFO     pages.base_page:base_page.py:35 Navigating to: http://localhost:8000/views/login.html
+INFO     pages.login_page:login_page.py:36 Navigated to login page
+INFO     pages.login_page:login_page.py:97 Logging in with username: nonexistent_user_12345
+INFO     pages.login_page:login_page.py:56 Entering username: nonexistent_user_12345
+DEBUG    pages.base_page:base_page.py:78 Filling '#username' with: nonexistent_user_12345
+INFO     pages.login_page:login_page.py:66 Entering password
+DEBUG    pages.base_page:base_page.py:78 Filling '#password' with: Test@123456
+INFO     pages.login_page:login_page.py:71 Clicking login button
+DEBUG    pages.base_page:base_page.py:65 Clicking element: #loginForm button[type='submit']
+DEBUG    pages.base_page:base_page.py:254 Waiting for 2500ms
+DEBUG    pages.base_page:base_page.py:244 Waiting for URL: **/home.html
+WARNING  pages.login_page:login_page.py:129 Login failed - not redirected to home page
+DEBUG    pages.base_page:base_page.py:232 Waiting for selector '#loginFailToast.show' to be visible
+-------------------------- Captured stderr teardown ---------------------------
+2025-12-04 17:37:23,927 - conftest - INFO - Screenshot saved: screenshots\test_login_with_invalid_username[chromium]_20251204_173723.png
+______ TestLoginFunctionality.test_login_with_invalid_password[chromium] ______
+tests\test_auth.py:118: in test_login_with_invalid_password
+    assert login_page.is_error_toast_displayed(), "Error toast should be displayed"
+E   AssertionError: Error toast should be displayed
+E   assert False
+E    +  where False = <bound method LoginPage.is_error_toast_displayed of <pages.login_page.LoginPage object at 0x000001979BA83950>>()
+E    +    where <bound method LoginPage.is_error_toast_displayed of <pages.login_page.LoginPage object at 0x000001979BA83950>> = <pages.login_page.LoginPage object at 0x000001979BA83950>.is_error_toast_displayed
+---------------------------- Captured stderr call -----------------------------
+2025-12-04 17:37:24,145 - pages.base_page - INFO - Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:37:24,841 - pages.login_page - INFO - Navigated to login page
+2025-12-04 17:37:24,841 - pages.login_page - INFO - Logging in with username: playwrighttest
+2025-12-04 17:37:24,841 - pages.login_page - INFO - Entering username: playwrighttest
+2025-12-04 17:37:24,841 - pages.base_page - DEBUG - Filling '#username' with: playwrighttest
+2025-12-04 17:37:24,879 - pages.login_page - INFO - Entering password
+2025-12-04 17:37:24,880 - pages.base_page - DEBUG - Filling '#password' with: wrongpassword123
+2025-12-04 17:37:24,900 - pages.login_page - INFO - Clicking login button
+2025-12-04 17:37:24,900 - pages.base_page - DEBUG - Clicking element: #loginForm button[type='submit']
+2025-12-04 17:37:24,960 - pages.base_page - DEBUG - Waiting for 2500ms
+2025-12-04 17:37:27,471 - pages.base_page - DEBUG - Waiting for URL: **/home.html
+2025-12-04 17:37:32,500 - pages.login_page - WARNING - Login failed - not redirected to home page
+2025-12-04 17:37:32,500 - pages.base_page - DEBUG - Waiting for selector '#loginFailToast.show' to be visible
+------------------------------ Captured log call ------------------------------
+INFO     pages.base_page:base_page.py:35 Navigating to: http://localhost:8000/views/login.html
+INFO     pages.login_page:login_page.py:36 Navigated to login page
+INFO     pages.login_page:login_page.py:97 Logging in with username: playwrighttest
+INFO     pages.login_page:login_page.py:56 Entering username: playwrighttest
+DEBUG    pages.base_page:base_page.py:78 Filling '#username' with: playwrighttest
+INFO     pages.login_page:login_page.py:66 Entering password
+DEBUG    pages.base_page:base_page.py:78 Filling '#password' with: wrongpassword123
+INFO     pages.login_page:login_page.py:71 Clicking login button
+DEBUG    pages.base_page:base_page.py:65 Clicking element: #loginForm button[type='submit']
+DEBUG    pages.base_page:base_page.py:254 Waiting for 2500ms
+DEBUG    pages.base_page:base_page.py:244 Waiting for URL: **/home.html
+WARNING  pages.login_page:login_page.py:129 Login failed - not redirected to home page
+DEBUG    pages.base_page:base_page.py:232 Waiting for selector '#loginFailToast.show' to be visible
+-------------------------- Captured stderr teardown ---------------------------
+2025-12-04 17:37:36,003 - conftest - INFO - Screenshot saved: screenshots\test_login_with_invalid_password[chromium]_20251204_173735.png
+____ TestSignupFunctionality.test_signup_with_existing_username[chromium] _____
+tests\test_auth.py:329: in test_signup_with_existing_username
+    assert signup_page.is_error_toast_displayed(), "Error toast should be displayed"
+E   AssertionError: Error toast should be displayed
+E   assert False
+E    +  where False = <bound method SignupPage.is_error_toast_displayed of <pages.signup_page.SignupPage object at 0x000001979BBF20F0>>()
+E    +    where <bound method SignupPage.is_error_toast_displayed of <pages.signup_page.SignupPage object at 0x000001979BBF20F0>> = <pages.signup_page.SignupPage object at 0x000001979BBF20F0>.is_error_toast_displayed
+---------------------------- Captured stderr call -----------------------------
+2025-12-04 17:38:09,671 - pages.base_page - INFO - Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:10,533 - pages.signup_page - INFO - Navigated to signup page
+2025-12-04 17:38:10,533 - pages.signup_page - INFO - Signing up with username: playwrighttest
+2025-12-04 17:38:10,533 - pages.signup_page - INFO - Entering name: New Test User
+2025-12-04 17:38:10,533 - pages.base_page - DEBUG - Filling '#name' with: New Test User
+2025-12-04 17:38:10,571 - pages.signup_page - INFO - Entering username: playwrighttest
+2025-12-04 17:38:10,572 - pages.base_page - DEBUG - Filling '#username' with: playwrighttest
+2025-12-04 17:38:10,594 - pages.signup_page - INFO - Entering email: newemail123@example.com
+2025-12-04 17:38:10,594 - pages.base_page - DEBUG - Filling '#email' with: newemail123@example.com
+2025-12-04 17:38:10,616 - pages.signup_page - INFO - Entering password
+2025-12-04 17:38:10,617 - pages.base_page - DEBUG - Filling '#newPassword' with: Test@123456
+2025-12-04 17:38:10,634 - pages.signup_page - INFO - Clicking signup button
+2025-12-04 17:38:10,635 - pages.base_page - DEBUG - Clicking element: #signupBtn
+2025-12-04 17:38:10,685 - pages.base_page - DEBUG - Waiting for 2500ms
+2025-12-04 17:38:13,200 - pages.base_page - DEBUG - Waiting for URL: **/login.html
+2025-12-04 17:38:18,205 - pages.signup_page - WARNING - Signup failed - not redirected to login page
+2025-12-04 17:38:18,205 - pages.base_page - DEBUG - Waiting for selector '#signupFailToast.show' to be visible
+------------------------------ Captured log call ------------------------------
+INFO     pages.base_page:base_page.py:35 Navigating to: http://localhost:8000/views/signup.html
+INFO     pages.signup_page:signup_page.py:36 Navigated to signup page
+INFO     pages.signup_page:signup_page.py:115 Signing up with username: playwrighttest
+INFO     pages.signup_page:signup_page.py:56 Entering name: New Test User
+DEBUG    pages.base_page:base_page.py:78 Filling '#name' with: New Test User
+INFO     pages.signup_page:signup_page.py:66 Entering username: playwrighttest
+DEBUG    pages.base_page:base_page.py:78 Filling '#username' with: playwrighttest
+INFO     pages.signup_page:signup_page.py:76 Entering email: newemail123@example.com
+DEBUG    pages.base_page:base_page.py:78 Filling '#email' with: newemail123@example.com
+INFO     pages.signup_page:signup_page.py:86 Entering password
+DEBUG    pages.base_page:base_page.py:78 Filling '#newPassword' with: Test@123456
+INFO     pages.signup_page:signup_page.py:91 Clicking signup button
+DEBUG    pages.base_page:base_page.py:65 Clicking element: #signupBtn
+DEBUG    pages.base_page:base_page.py:254 Waiting for 2500ms
+DEBUG    pages.base_page:base_page.py:244 Waiting for URL: **/login.html
+WARNING  pages.signup_page:signup_page.py:153 Signup failed - not redirected to login page
+DEBUG    pages.base_page:base_page.py:232 Waiting for selector '#signupFailToast.show' to be visible
+-------------------------- Captured stderr teardown ---------------------------
+2025-12-04 17:38:21,670 - conftest - INFO - Screenshot saved: screenshots\test_signup_with_existing_username[chromium]_20251204_173821.png
+______ TestSignupFunctionality.test_signup_with_existing_email[chromium] ______
+tests\test_auth.py:350: in test_signup_with_existing_email
+    assert signup_page.is_error_toast_displayed(), "Error toast should be displayed"
+E   AssertionError: Error toast should be displayed
+E   assert False
+E    +  where False = <bound method SignupPage.is_error_toast_displayed of <pages.signup_page.SignupPage object at 0x000001979BC9B410>>()
+E    +    where <bound method SignupPage.is_error_toast_displayed of <pages.signup_page.SignupPage object at 0x000001979BC9B410>> = <pages.signup_page.SignupPage object at 0x000001979BC9B410>.is_error_toast_displayed
+---------------------------- Captured stderr call -----------------------------
+2025-12-04 17:38:21,869 - pages.base_page - INFO - Navigating to: http://localhost:8000/views/signup.html
+2025-12-04 17:38:22,725 - pages.signup_page - INFO - Navigated to signup page
+2025-12-04 17:38:22,725 - pages.signup_page - INFO - Signing up with username: newusermichele537290
+2025-12-04 17:38:22,727 - pages.signup_page - INFO - Entering name: New Test User
+2025-12-04 17:38:22,727 - pages.base_page - DEBUG - Filling '#name' with: New Test User
+2025-12-04 17:38:22,763 - pages.signup_page - INFO - Entering username: newusermichele537290
+2025-12-04 17:38:22,763 - pages.base_page - DEBUG - Filling '#username' with: newusermichele537290
+2025-12-04 17:38:22,792 - pages.signup_page - INFO - Entering email: playwrighttest@example.com
+2025-12-04 17:38:22,792 - pages.base_page - DEBUG - Filling '#email' with: playwrighttest@example.com
+2025-12-04 17:38:22,819 - pages.signup_page - INFO - Entering password
+2025-12-04 17:38:22,819 - pages.base_page - DEBUG - Filling '#newPassword' with: Test@123456
+2025-12-04 17:38:22,842 - pages.signup_page - INFO - Clicking signup button
+2025-12-04 17:38:22,842 - pages.base_page - DEBUG - Clicking element: #signupBtn
+2025-12-04 17:38:22,909 - pages.base_page - DEBUG - Waiting for 2500ms
+2025-12-04 17:38:25,420 - pages.base_page - DEBUG - Waiting for URL: **/login.html
+2025-12-04 17:38:30,430 - pages.signup_page - WARNING - Signup failed - not redirected to login page
+2025-12-04 17:38:30,430 - pages.base_page - DEBUG - Waiting for selector '#signupFailToast.show' to be visible
+------------------------------ Captured log call ------------------------------
+INFO     pages.base_page:base_page.py:35 Navigating to: http://localhost:8000/views/signup.html
+INFO     pages.signup_page:signup_page.py:36 Navigated to signup page
+INFO     pages.signup_page:signup_page.py:115 Signing up with username: newusermichele537290
+INFO     pages.signup_page:signup_page.py:56 Entering name: New Test User
+DEBUG    pages.base_page:base_page.py:78 Filling '#name' with: New Test User
+INFO     pages.signup_page:signup_page.py:66 Entering username: newusermichele537290
+DEBUG    pages.base_page:base_page.py:78 Filling '#username' with: newusermichele537290
+INFO     pages.signup_page:signup_page.py:76 Entering email: playwrighttest@example.com
+DEBUG    pages.base_page:base_page.py:78 Filling '#email' with: playwrighttest@example.com
+INFO     pages.signup_page:signup_page.py:86 Entering password
+DEBUG    pages.base_page:base_page.py:78 Filling '#newPassword' with: Test@123456
+INFO     pages.signup_page:signup_page.py:91 Clicking signup button
+DEBUG    pages.base_page:base_page.py:65 Clicking element: #signupBtn
+DEBUG    pages.base_page:base_page.py:254 Waiting for 2500ms
+DEBUG    pages.base_page:base_page.py:244 Waiting for URL: **/login.html
+WARNING  pages.signup_page:signup_page.py:153 Signup failed - not redirected to login page
+DEBUG    pages.base_page:base_page.py:232 Waiting for selector '#signupFailToast.show' to be visible
+-------------------------- Captured stderr teardown ---------------------------
+2025-12-04 17:38:33,914 - conftest - INFO - Screenshot saved: screenshots\test_signup_with_existing_email[chromium]_20251204_173833.png
+_______________ TestLogout.test_logout_functionality[chromium] ________________
+tests\test_auth.py:466: in test_logout_functionality
+    page.click(Selectors.NavBar.LOGOUT_BUTTON)
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:10189: in click
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:694: in click
+    return await self._main_frame.click(**locals_to_params(locals()))
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:484: in click
+    await self._channel.send("click", locals_to_params(locals()))
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: in inner_send
+    result = next(iter(done)).result()
+E   playwright._impl._errors.TimeoutError: Timeout 30000ms exceeded.
+---------------------------- Captured stderr call -----------------------------
+2025-12-04 17:38:51,843 - pages.base_page - INFO - Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:38:53,738 - pages.login_page - INFO - Navigated to login page
+2025-12-04 17:38:53,740 - pages.login_page - INFO - Logging in with username: playwrighttest
+2025-12-04 17:38:53,740 - pages.login_page - INFO - Entering username: playwrighttest
+2025-12-04 17:38:53,740 - pages.base_page - DEBUG - Filling '#username' with: playwrighttest
+2025-12-04 17:38:53,773 - pages.login_page - INFO - Entering password
+2025-12-04 17:38:53,773 - pages.base_page - DEBUG - Filling '#password' with: Test@123456
+2025-12-04 17:38:53,791 - pages.login_page - INFO - Clicking login button
+2025-12-04 17:38:53,791 - pages.base_page - DEBUG - Clicking element: #loginForm button[type='submit']
+2025-12-04 17:38:53,847 - pages.base_page - DEBUG - Waiting for 2500ms
+2025-12-04 17:38:56,354 - pages.base_page - DEBUG - Waiting for URL: **/home.html
+2025-12-04 17:38:56,361 - pages.login_page - INFO - Login successful - redirected to home page
+2025-12-04 17:38:56,361 - pages.base_page - DEBUG - Waiting for 2000ms
+------------------------------ Captured log call ------------------------------
+INFO     pages.base_page:base_page.py:35 Navigating to: http://localhost:8000/views/login.html
+INFO     pages.login_page:login_page.py:36 Navigated to login page
+INFO     pages.login_page:login_page.py:97 Logging in with username: playwrighttest
+INFO     pages.login_page:login_page.py:56 Entering username: playwrighttest
+DEBUG    pages.base_page:base_page.py:78 Filling '#username' with: playwrighttest
+INFO     pages.login_page:login_page.py:66 Entering password
+DEBUG    pages.base_page:base_page.py:78 Filling '#password' with: Test@123456
+INFO     pages.login_page:login_page.py:71 Clicking login button
+DEBUG    pages.base_page:base_page.py:65 Clicking element: #loginForm button[type='submit']
+DEBUG    pages.base_page:base_page.py:254 Waiting for 2500ms
+DEBUG    pages.base_page:base_page.py:244 Waiting for URL: **/home.html
+INFO     pages.login_page:login_page.py:126 Login successful - redirected to home page
+DEBUG    pages.base_page:base_page.py:254 Waiting for 2000ms
+-------------------------- Captured stderr teardown ---------------------------
+2025-12-04 17:39:28,678 - conftest - INFO - Screenshot saved: screenshots\test_logout_functionality[chromium]_20251204_173928.png
+_______________ TestLogout.test_logout_clears_session[chromium] _______________
+tests\test_auth.py:487: in test_logout_clears_session
+    token_before = login_page.get_local_storage("token")
+pages\base_page.py:323: in get_local_storage
+    return self.execute_script(f"return localStorage.getItem('{key}')")
+pages\base_page.py:305: in execute_script
+    return self.page.evaluate(script, *args)
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+.\playwright_venv\Scripts\py
+thon.exe : 2025-12-04 
+17:39:34,999 - conftest - 
+INFO - =====================
+============================
+============================
+===
+At line:1 char:1
++ .\playwright_venv\Scripts\
+python.exe -m pytest 
+tests/test_auth.py -v  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (2025-  
+  12-04 17:3...==========   
+ =====:String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+2025-12-04 17:39:34,999 - 
+conftest - INFO - Test 
+Suite Execution Completed
+2025-12-04 17:39:34,999 - 
+conftest - INFO - ==========
+============================
+============================
+==============
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: in inner_send
+    result = next(iter(done)).result()
+E   playwright._impl._errors.Error: SyntaxError: Illegal return statement
+E       at eval (<anonymous>)
+E       at UtilityScript.evaluate (<anonymous>:226:30)
+E       at UtilityScript.<anonymous> (<anonymous>:1:44)
+---------------------------- Captured stderr call -----------------------------
+2025-12-04 17:39:28,858 - pages.base_page - INFO - Navigating to: http://localhost:8000/views/login.html
+2025-12-04 17:39:30,785 - pages.login_page - INFO - Navigated to login page
+2025-12-04 17:39:30,785 - pages.login_page - INFO - Logging in with username: playwrighttest
+2025-12-04 17:39:30,785 - pages.login_page - INFO - Entering username: playwrighttest
+2025-12-04 17:39:30,785 - pages.base_page - DEBUG - Filling '#username' with: playwrighttest
+2025-12-04 17:39:30,820 - pages.login_page - INFO - Entering password
+2025-12-04 17:39:30,821 - pages.base_page - DEBUG - Filling '#password' with: Test@123456
+2025-12-04 17:39:30,835 - pages.login_page - INFO - Clicking login button
+2025-12-04 17:39:30,835 - pages.base_page - DEBUG - Clicking element: #loginForm button[type='submit']
+2025-12-04 17:39:30,892 - pages.base_page - DEBUG - Waiting for 2500ms
+2025-12-04 17:39:33,396 - pages.base_page - DEBUG - Waiting for URL: **/home.html
+2025-12-04 17:39:33,401 - pages.login_page - INFO - Login successful - redirected to home page
+2025-12-04 17:39:33,401 - pages.base_page - DEBUG - Waiting for 1000ms
+------------------------------ Captured log call ------------------------------
+INFO     pages.base_page:base_page.py:35 Navigating to: http://localhost:8000/views/login.html
+INFO     pages.login_page:login_page.py:36 Navigated to login page
+INFO     pages.login_page:login_page.py:97 Logging in with username: playwrighttest
+INFO     pages.login_page:login_page.py:56 Entering username: playwrighttest
+DEBUG    pages.base_page:base_page.py:78 Filling '#username' with: playwrighttest
+INFO     pages.login_page:login_page.py:66 Entering password
+DEBUG    pages.base_page:base_page.py:78 Filling '#password' with: Test@123456
+INFO     pages.login_page:login_page.py:71 Clicking login button
+DEBUG    pages.base_page:base_page.py:65 Clicking element: #loginForm button[type='submit']
+DEBUG    pages.base_page:base_page.py:254 Waiting for 2500ms
+DEBUG    pages.base_page:base_page.py:244 Waiting for URL: **/home.html
+INFO     pages.login_page:login_page.py:126 Login successful - redirected to home page
+DEBUG    pages.base_page:base_page.py:254 Waiting for 1000ms
+-------------------------- Captured stderr teardown ---------------------------
+2025-12-04 17:39:34,723 - conftest - INFO - Screenshot saved: screenshots\test_logout_clears_session[chromium]_20251204_173934.png
+=========================== short test summary info ===========================
+FAILED tests/test_auth.py::TestLoginFunctionality::test_login_with_invalid_username[chromium]
+FAILED tests/test_auth.py::TestLoginFunctionality::test_login_with_invalid_password[chromium]
+FAILED tests/test_auth.py::TestSignupFunctionality::test_signup_with_existing_username[chromium]
+FAILED tests/test_auth.py::TestSignupFunctionality::test_signup_with_existing_email[chromium]
+FAILED tests/test_auth.py::TestLogout::test_logout_functionality[chromium] - ...
+FAILED tests/test_auth.py::TestLogout::test_logout_clears_session[chromium]
+================== 6 failed, 19 passed in 150.87s (0:02:30) ===================

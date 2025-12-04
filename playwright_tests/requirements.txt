@@ -1,0 +1,33 @@
+# Playwright UI Automation Test Suite
+# Python dependencies for testing
+
+# Core Testing Framework
+pytest==7.4.3
+pytest-playwright==0.4.3
+playwright==1.40.0
+
+# Test Utilities
+pytest-xdist==3.5.0          # Parallel test execution
+pytest-html==4.1.1            # HTML test reports
+pytest-timeout==2.2.0         # Test timeout management
+pytest-rerunfailures==12.0    # Retry failed tests
+
+# Data Generation
+Faker==20.1.0                 # Generate fake test data
+
+# Environment Management
+python-dotenv==1.0.0          # Load environment variables
+
+# API Testing (for backend verification)
+requests==2.31.0              # HTTP requests
+httpx==0.25.2                 # Async HTTP client
+
+# Reporting (Optional)
+allure-pytest==2.13.2         # Allure reporting
+
+# Utilities
+Pillow==10.1.0                # Image processing
+python-dateutil==2.8.2        # Date utilities
+
+# Logging
+colorlog==6.8.0               # Colored logging

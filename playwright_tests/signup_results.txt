@@ -1,0 +1,1520 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.12.8, pytest-7.4.3, pluggy-1.6.0 -- F:\FlaskSociailMedia\playwright_tests\playwright_venv\Scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.8', 'Platform': 'Windows-11-10.0.26100-SP0', 'Packages': {'pytest': '7.4.3', 'pluggy': '1.6.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'anyio': '4.12.0', 'Faker': '20.1.0', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.4.3', 'rerunfailures': '12.0', 'timeout': '2.2.0', 'xdist': '3.5.0'}, 'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-22', 'Base URL': ''}
+rootdir: F:\FlaskSociailMedia\playwright_tests
+configfile: pytest.ini
+plugins: allure-pytest-2.13.2, anyio-4.12.0, Faker-20.1.0, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.4.3, rerunfailures-12.0, timeout-2.2.0, xdist-3.5.0
+timeout: 300.0s
+timeout method: thread
+timeout func_only: False
+collecting ... collected 19 items
+
+tests/test_signup.py::TestSignupPageElements::test_signup_page_loads 
+------------------------------- live log setup --------------------------------
+2025-12-04 18:19:26 [    INFO] ============================================================
+2025-12-04 18:19:26 [    INFO] OPENING BROWSER...
+ERROR                                                                    [  5%]
+tests/test_signup.py::TestSignupFieldValidation::test_name_field_validation_invalid_single_char ERROR [ 10%]
+tests/test_signup.py::TestSignupFieldValidation::test_name_field_validation_with_numbers ERROR [ 15%]
+tests/test_signup.py::TestSignupFieldValidation::test_name_field_validation_valid ERROR [ 21%]
+tests/test_signup.py::TestSignupFieldValidation::test_username_field_validation_with_spaces ERROR [ 26%]
+tests/test_signup.py::TestSignupFieldValidation::test_username_field_validation_single_char ERROR [ 31%]
+tests/test_signup.py::TestSignupFieldValidation::test_username_field_validation_valid ERROR [ 36%]
+tests/test_signup.py::TestSignupFieldValidation::test_email_field_validation_invalid_format ERROR [ 42%]
+tests/test_signup.py::TestSignupFieldValidation::test_email_field_validation_missing_at ERROR [ 47%]
+tests/test_signup.py::TestSignupFieldValidation::test_email_field_validation_valid ERROR [ 52%]
+tests/test_signup.py::TestSignupFieldValidation::test_password_field_validation_short ERROR [ 57%]
+tests/test_signup.py::TestSignupFieldValidation::test_password_field_validation_valid ERROR [ 63%]
+tests/test_signup.py::TestSignupPasswordToggle::test_password_toggle_visibility ERROR [ 68%]
+tests/test_signup.py::TestSignupFormSubmission::test_submit_empty_form ERROR [ 73%]
+tests/test_signup.py::TestSignupFormSubmission::test_submit_partial_form ERROR [ 78%]
+tests/test_signup.py::TestSignupFormSubmission::test_submit_with_invalid_data ERROR [ 84%]
+tests/test_signup.py::TestSignupFormSubmission::test_signup_with_valid_new_user ERROR [ 89%]
+tests/test_signup.py::TestSignupFormSubmission::test_signup_with_existing_username ERROR [ 94%]
+tests/test_signup.py::TestSignupNavigation::test_navigate_to_login_page ERROR [100%]
+
+=================================== ERRORS ====================================
+_______ ERROR at setup of TestSignupPageElements.test_signup_page_loads _______
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+---------------------------- Captured stderr setup ----------------------------
+2025-12-04 18:19:26,270 - Looking for locale `en_US` in provider `faker.providers.address`.
+2025-12-04 18:19:26,275 - Provider `faker.providers.address` has been localized to `en_US`.
+2025-12-04 18:19:26,275 - Looking for locale `en_US` in provider `faker.providers.automotive`.
+2025-12-04 18:19:26,279 - Provider `faker.providers.automotive` has been localized to `en_US`.
+2025-12-04 18:19:26,279 - Looking for locale `en_US` in provider `faker.providers.bank`.
+2025-12-04 18:19:26,281 - Specified locale `en_US` is not available for provider `faker.providers.bank`. Locale reset to `en_GB` for this provider.
+2025-12-04 18:19:26,281 - Looking for locale `en_US` in provider `faker.providers.barcode`.
+2025-12-04 18:19:26,283 - Provider `faker.providers.barcode` has been localized to `en_US`.
+2025-12-04 18:19:26,283 - Looking for locale `en_US` in provider `faker.providers.color`.
+2025-12-04 18:19:26,285 - Provider `faker.providers.color` has been localized to `en_US`.
+2025-12-04 18:19:26,285 - Looking for locale `en_US` in provider `faker.providers.company`.
+2025-12-04 18:19:26,288 - Provider `faker.providers.company` has been localized to `en_US`.
+2025-12-04 18:19:26,288 - Looking for locale `en_US` in provider `faker.providers.credit_card`.
+2025-12-04 18:19:26,289 - Provider `faker.providers.credit_card` has been localized to `en_US`.
+2025-12-04 18:19:26,289 - Looking for locale `en_US` in provider `faker.providers.currency`.
+2025-12-04 18:19:26,291 - Provider `faker.providers.currency` has been localized to `en_US`.
+2025-12-04 18:19:26,291 - Looking for locale `en_US` in provider `faker.providers.date_time`.
+2025-12-04 18:19:26,295 - Provider `faker.providers.date_time` has been localized to `en_US`.
+2025-12-04 18:19:26,295 - Provider `faker.providers.emoji` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 18:19:26,296 - Provider `faker.providers.file` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 18:19:26,296 - Looking for locale `en_US` in provider `faker.providers.geo`.
+2025-12-04 18:19:26,296 - Provider `faker.providers.geo` has been localized to `en_US`.
+2025-12-04 18:19:26,296 - Looking for locale `en_US` in provider `faker.providers.internet`.
+2025-12-04 18:19:26,299 - Provider `faker.providers.internet` has been localized to `en_US`.
+2025-12-04 18:19:26,299 - Provider `faker.providers.isbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 18:19:26,299 - Looking for locale `en_US` in provider `faker.providers.job`.
+2025-12-04 18:19:26,302 - Provider `faker.providers.job` has been localized to `en_US`.
+2025-12-04 18:19:26,302 - Looking for locale `en_US` in provider `faker.providers.lorem`.
+2025-12-04 18:19:26,303 - Provider `faker.providers.lorem` has been localized to `en_US`.
+2025-12-04 18:19:26,303 - Looking for locale `en_US` in provider `faker.providers.misc`.
+2025-12-04 18:19:26,305 - Provider `faker.providers.misc` has been localized to `en_US`.
+2025-12-04 18:19:26,305 - Looking for locale `en_US` in provider `faker.providers.passport`.
+2025-12-04 18:19:26,305 - Provider `faker.providers.passport` has been localized to `en_US`.
+2025-12-04 18:19:26,305 - Looking for locale `en_US` in provider `faker.providers.person`.
+2025-12-04 18:19:26,309 - Provider `faker.providers.person` has been localized to `en_US`.
+2025-12-04 18:19:26,309 - Looking for locale `en_US` in provider `faker.providers.phone_number`.
+2025-12-04 18:19:26,314 - Provider `faker.providers.phone_number` has been localized to `en_US`.
+2025-12-04 18:19:26,314 - Provider `faker.providers.profile` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 18:19:26,314 - Provider `faker.providers.python` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 18:19:26,314 - Provider `faker.providers.sbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 18:19:26,314 - Looking for locale `en_US` in provider `faker.providers.ssn`.
+2025-12-04 18:19:26,317 - Provider `faker.providers.ssn` has been localized to `en_US`.
+2025-12-04 18:19:26,317 - Provider `faker.providers.user_agent` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 18:19:26,318 - ============================================================
+2025-12-04 18:19:26,319 - OPENING BROWSER...
+2025-12-04 18:19:26,319 - Using proactor: IocpProactor
+----------------------------- Captured log setup ------------------------------
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.address`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.address` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.automotive`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.automotive` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.bank`.
+DEBUG    faker.factory:factory.py:86 Specified locale `en_US` is not available for provider `faker.providers.bank`. Locale reset to `en_GB` for this provider.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.barcode`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.barcode` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.color`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.color` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.company`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.company` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.credit_card`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.credit_card` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.currency`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.currency` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.date_time`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.date_time` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.emoji` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.file` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.geo`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.geo` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.internet`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.internet` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.isbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.job`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.job` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.lorem`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.lorem` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.misc`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.misc` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.passport`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.passport` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.person`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.person` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.phone_number`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.phone_number` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.profile` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.python` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.sbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.ssn`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.ssn` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.user_agent` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+INFO     conftest:conftest.py:29 ============================================================
+INFO     conftest:conftest.py:30 OPENING BROWSER...
+DEBUG    asyncio:proactor_events.py:634 Using proactor: IocpProactor
+_ ERROR at setup of TestSignupFieldValidation.test_name_field_validation_invalid_single_char _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_name_field_validation_with_numbers _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_name_field_validation_valid _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_username_field_validation_with_spaces _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_username_field_validation_single_char _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_username_field_validation_valid _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_email_field_validation_invalid_format _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_email_field_validation_missing_at _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_email_field_validation_valid _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_password_field_validation_short _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFieldValidation.test_password_field_validation_valid _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupPasswordToggle.test_password_toggle_visibility __
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+______ ERROR at setup of TestSignupFormSubmission.test_submit_empty_form ______
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_____ ERROR at setup of TestSignupFormSubmission.test_submit_partial_form _____
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+__ ERROR at setup of TestSignupFormSubmission.test_submit_with_invalid_data ___
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFormSubmission.test_signup_with_valid_new_user __
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_ ERROR at setup of TestSignupFormSubmission.test_signup_with_existing_username _
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+_____ ERROR at setup of TestSignupNavigation.test_navigate_to_login_page ______
+
+    @pytest.fixture(scope="session", autouse=True)
+    def setup_browser():
+        """Setup browser once for entire session."""
+        global _playwright, _browser, _context, _page
+    
+        logger.info("=" * 60)
+        logger.info("OPENING BROWSER...")
+    
+        _playwright = sync_playwright().start()
+        _browser = _playwright.chromium.launch(
+            headless=Config.Browser.HEADLESS,
+            slow_mo=Config.Browser.SLOW_MO,
+            args=['--start-maximized']
+        )
+        _context = _browser.new_context(viewport=None, no_viewport=True)
+        _page = _context.new_page()
+        _page.set_default_timeout(30000)
+    
+        # Clear all storage
+        _page.goto("about:blank")
+>       _page.evaluate("localStorage.clear(); sessionStorage.clear();")
+
+conftest.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:8710: in evaluate
+    self._sync(
+playwright_venv\Lib\site-packages\playwright\_impl\_page.py:391: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+playwright_venv\Lib\site-packages\playwright\_impl\_frame.py:272: in evaluate
+    await self._channel.send(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: in send
+    return await self._connection.wrap_api_call(
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x000002374BAA5E50>
+method = 'evaluateExpression'
+params = {'arg': {'handles': [], 'value': {'v': 'null'}}, 'expression': 'localStorage.clear(); sessionStorage.clear();'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+E           at eval (eval at evaluate (:226:30), <anonymous>:1:1)
+E           at eval (<anonymous>)
+E           at UtilityScript.evaluate (<anonymous>:226:30)
+E           at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+=========================== short test summary info ===========================
+ERROR tests/test_signup.py::TestSignupPageElements::test_signup_page_loads - ...
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_name_field_validation_invalid_single_char
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_name_field_validation_with_numbers
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_name_field_validation_valid
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_username_field_validation_with_spaces
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_username_field_validation_single_char
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_username_field_validation_valid
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_email_field_validation_invalid_format
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_email_field_validation_missing_at
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_email_field_validation_valid
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_password_field_validation_short
+ERROR tests/test_signup.py::TestSignupFieldValidation::test_password_field_validation_valid
+ERROR tests/test_signup.py::TestSignupPasswordToggle::test_password_toggle_visibility
+ERROR tests/test_signup.py::TestSignupFormSubmission::test_submit_empty_form
+ERROR tests/test_signup.py::TestSignupFormSubmission::test_submit_partial_form
+ERROR tests/test_signup.py::TestSignupFormSubmission::test_submit_with_invalid_data
+ERROR tests/test_signup.py::TestSignupFormSubmission::test_signup_with_valid_new_user
+ERROR tests/test_signup.py::TestSignupFormSubmission::test_signup_with_existing_username
+ERROR tests/test_signup.py::TestSignupNavigation::test_navigate_to_login_page
+============================= 19 errors in 8.72s ==============================

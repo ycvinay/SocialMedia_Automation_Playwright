@@ -1,0 +1,231 @@
+﻿
+---------------------------- live log sessionstart ----------------------------
+2025-12-04 18:18:26 [    INFO] ================================================================================
+2025-12-04 18:18:26 [    INFO] OPENING CLEAN BROWSER...
+2025-12-04 18:18:26 [    INFO] ================================================================================
+2025-12-04 18:18:27 [    INFO] Clearing all cookies and storage...
+.\playwright_venv\Scripts\py
+thon.exe : 2025-12-04 
+18:18:26,285 - conftest - 
+INFO - =====================
+============================
+============================
+===
+At line:1 char:1
++ .\playwright_venv\Scripts\
+python.exe -m pytest 
+tests/test_signup.py - ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (2025-  
+  12-04 18:1...==========   
+ =====:String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+2025-12-04 18:18:26,285 - 
+conftest - INFO - Starting 
+Playwright UI Automation 
+Test Suite
+2025-12-04 18:18:26,286 - 
+conftest - INFO - Base URL: 
+http://localhost:8000
+2025-12-04 18:18:26,286 - 
+conftest - INFO - Headless: 
+False
+2025-12-04 18:18:26,286 - 
+conftest - INFO - Slow 
+Motion: 800ms
+2025-12-04 18:18:26,286 - 
+conftest - INFO - ==========
+============================
+============================
+==============
+2025-12-04 18:18:26,298 - 
+conftest - INFO - ==========
+============================
+============================
+==============
+2025-12-04 18:18:26,300 - 
+conftest - INFO - OPENING 
+CLEAN BROWSER...
+2025-12-04 18:18:26,300 - 
+conftest - INFO - ==========
+============================
+============================
+==============
+2025-12-04 18:18:26,300 - 
+asyncio - DEBUG - Using 
+proactor: IocpProactor
+2025-12-04 18:18:27,497 - 
+conftest - INFO - Clearing 
+all cookies and storage...
+--- Logging error ---
+Traceback (most recent call 
+last):
+  File "C:\Users\Y C VINAT\A
+ppData\Local\Programs\Python
+\Python312\Lib\logging\__ini
+t__.py", line 1163, in emit
+    stream.write(msg + 
+self.terminator)
+ValueError: I/O operation 
+on closed file.
+Call stack:
+  File "<frozen runpy>", 
+line 198, in 
+_run_module_as_main
+  File "<frozen runpy>", 
+line 88, in _run_code
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\pyte
+st\__main__.py", line 5, in 
+<module>
+    raise SystemExit(pytest.
+console_main())
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\_pyt
+est\config\__init__.py", 
+line 192, in console_main
+    code = main()
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\_pyt
+est\config\__init__.py", 
+line 169, in main
+    ret: Union[ExitCode, 
+int] = config.hook.pytest_cm
+dline_main(
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\plug
+gy\_hooks.py", line 512, in 
+__call__
+    return 
+self._hookexec(self.name, 
+self._hookimpls.copy(), 
+kwargs, firstresult)
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\plug
+gy\_manager.py", line 120, 
+in _hookexec
+    return self._inner_hooke
+xec(hook_name, methods, 
+kwargs, firstresult)
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\plug
+gy\_callers.py", line 121, 
+in _multicall
+    res = 
+hook_impl.function(*args)
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\_pyt
+est\main.py", line 318, in 
+pytest_cmdline_main
+    return 
+wrap_session(config, _main)
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\_pyt
+est\main.py", line 313, in 
+wrap_session
+    
+config._ensure_unconfigure()
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\_pyt
+est\config\__init__.py", 
+line 1058, in 
+_ensure_unconfigure
+    self.hook.pytest_unconfi
+gure(config=self)
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\plug
+gy\_hooks.py", line 512, in 
+__call__
+    return 
+self._hookexec(self.name, 
+self._hookimpls.copy(), 
+kwargs, firstresult)
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\plug
+gy\_manager.py", line 120, 
+in _hookexec
+    return self._inner_hooke
+xec(hook_name, methods, 
+kwargs, firstresult)
+  File "F:\FlaskSociailMedia
+\playwright_tests\playwright
+_venv\Lib\site-packages\plug
+gy\_callers.py", line 121, 
+in _multicall
+    res = 
+hook_impl.function(*args)
+  File "F:\FlaskSociailMedia
+\playwright_tests\conftest.p
+y", line 51, in 
+pytest_unconfigure
+    logger.info("Test Suite 
+Execution Completed")
+Message: 'Test Suite 
+Execution Completed'
+Arguments: ()
+INTERNALERROR> Traceback (most recent call last):
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\_pytest\main.py", line 269, in wrap_session
+INTERNALERROR>     config.hook.pytest_sessionstart(session=session)
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+INTERNALERROR>     return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+INTERNALERROR>            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+INTERNALERROR>     return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+INTERNALERROR>            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\pluggy\_callers.py", line 167, in _multicall
+INTERNALERROR>     raise exception
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\pluggy\_callers.py", line 139, in _multicall
+INTERNALERROR>     teardown.throw(exception)
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\pluggy\_callers.py", line 53, in run_old_style_hookwrapper
+INTERNALERROR>     return result.get_result()
+INTERNALERROR>            ^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\pluggy\_result.py", line 103, in get_result
+INTERNALERROR>     raise exc.with_traceback(tb)
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\pluggy\_callers.py", line 38, in run_old_style_hookwrapper
+INTERNALERROR>     res = yield
+INTERNALERROR>           ^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+INTERNALERROR>     res = hook_impl.function(*args)
+INTERNALERROR>           ^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\conftest.py", line 94, in pytest_sessionstart
+INTERNALERROR>     _page.evaluate("() => { localStorage.clear(); sessionStorage.clear(); }")
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py", line 8710, in evaluate
+INTERNALERROR>     self._sync(
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+INTERNALERROR>     return task.result()
+INTERNALERROR>            ^^^^^^^^^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\playwright\_impl\_page.py", line 391, in evaluate
+INTERNALERROR>     return await self._main_frame.evaluate(expression, arg)
+INTERNALERROR>            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\playwright\_impl\_frame.py", line 272, in evaluate
+INTERNALERROR>     await self._channel.send(
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\playwright\_impl\_connection.py", line 62, in send
+INTERNALERROR>     return await self._connection.wrap_api_call(
+INTERNALERROR>            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\playwright\_impl\_connection.py", line 492, in wrap_api_call
+INTERNALERROR>     return await cb()
+INTERNALERROR>            ^^^^^^^^^^
+INTERNALERROR>   File "F:\FlaskSociailMedia\playwright_tests\playwright_venv\Lib\site-packages\playwright\_impl\_connection.py", line 100, in inner_send
+INTERNALERROR>     result = next(iter(done)).result()
+INTERNALERROR>              ^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR> playwright._impl._errors.Error: DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+INTERNALERROR>     at eval (eval at evaluate (:226:30), <anonymous>:1:9)
+INTERNALERROR>     at UtilityScript.evaluate (<anonymous>:233:19)
+INTERNALERROR>     at UtilityScript.<anonymous> (<anonymous>:1:44)

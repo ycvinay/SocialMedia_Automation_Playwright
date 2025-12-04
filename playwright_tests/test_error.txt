@@ -1,0 +1,530 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.12.8, pytest-7.4.3, pluggy-1.6.0
+rootdir: F:\FlaskSociailMedia\playwright_tests
+configfile: pytest.ini
+plugins: allure-pytest-2.13.2, anyio-4.12.0, Faker-20.1.0, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.4.3, rerunfailures-12.0, timeout-2.2.0, xdist-3.5.0
+timeout: 300.0s
+timeout method: thread
+timeout func_only: False
+collected 1 item
+
+tests/test_auth.py::TestLoginPageElements::test_login_page_loads_successfully 
+------------------------------- live log setup --------------------------------
+2025-12-04 17:48:21 [    INFO] Browser launched: Chromium (Headless=False, SlowMo=800ms)
+ERROR                                                                    [100%]
+------------------------------ live log teardown ------------------------------
+2025-12-04 17:48:21 [    INFO] Browser closed
+
+
+=================================== ERRORS ====================================
+_ ERROR at setup of TestLoginPageElements.test_login_page_loads_successfully __
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\Y C VINAT\AppData\Local\ms-playwright\chromium-1091\chrome-win\chrome.exe> version=120.0.6099.28>
+
+    @pytest.fixture(scope="session")
+    def browser_context(browser: Browser) -> BrowserContext:
+        """
+        Create a SINGLE browser context for the entire test session.
+        """
+>       context = browser.new_context(
+            viewport=None,  # Use full screen (no fixed viewport)
+            no_viewport=True,  # Disable viewport to allow maximize
+            device_scale_factor=Config.Browser.DEVICE_SCALE_FACTOR,
+        )
+
+conftest.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Browser type=<BrowserType name=chromium executable_path=C:\Users\Y C VINAT\AppData\Local\ms-playwright\chromium-1091\chrome-win\chrome.exe> version=120.0.6099.28>
+
+    def new_context(
+        self,
+        *,
+        viewport: typing.Optional[ViewportSize] = None,
+        screen: typing.Optional[ViewportSize] = None,
+        no_viewport: typing.Optional[bool] = None,
+        ignore_https_errors: typing.Optional[bool] = None,
+        java_script_enabled: typing.Optional[bool] = None,
+        bypass_csp: typing.Optional[bool] = None,
+        user_agent: typing.Optional[str] = None,
+        locale: typing.Optional[str] = None,
+        timezone_id: typing.Optional[str] = None,
+        geolocation: typing.Optional[Geolocation] = None,
+        permissions: typing.Optional[typing.List[str]] = None,
+        extra_http_headers: typing.Optional[typing.Dict[str, str]] = None,
+        offline: typing.Optional[bool] = None,
+        http_credentials: typing.Optional[HttpCredentials] = None,
+        device_scale_factor: typing.Optional[float] = None,
+        is_mobile: typing.Optional[bool] = None,
+        has_touch: typing.Optional[bool] = None,
+        color_scheme: typing.Optional[
+            Literal["dark", "light", "no-preference", "null"]
+        ] = None,
+        reduced_motion: typing.Optional[
+            Literal["no-preference", "null", "reduce"]
+        ] = None,
+        forced_colors: typing.Optional[Literal["active", "none", "null"]] = None,
+        accept_downloads: typing.Optional[bool] = None,
+        default_browser_type: typing.Optional[str] = None,
+        proxy: typing.Optional[ProxySettings] = None,
+        record_har_path: typing.Optional[typing.Union[str, pathlib.Path]] = None,
+        record_har_omit_content: typing.Optional[bool] = None,
+        record_video_dir: typing.Optional[typing.Union[str, pathlib.Path]] = None,
+        record_video_size: typing.Optional[ViewportSize] = None,
+        storage_state: typing.Optional[
+            typing.Union[StorageState, str, pathlib.Path]
+        ] = None,
+        base_url: typing.Optional[str] = None,
+        strict_selectors: typing.Optional[bool] = None,
+        service_workers: typing.Optional[Literal["allow", "block"]] = None,
+        record_har_url_filter: typing.Optional[
+            typing.Union[str, typing.Pattern[str]]
+        ] = None,
+        record_har_mode: typing.Optional[Literal["full", "minimal"]] = None,
+        record_har_content: typing.Optional[Literal["attach", "embed", "omit"]] = None
+    ) -> "BrowserContext":
+        """Browser.new_context
+    
+        Creates a new browser context. It won't share cookies/cache with other browser contexts.
+    
+        **NOTE** If directly using this method to create `BrowserContext`s, it is best practice to explicitly close the
+        returned context via `browser_context.close()` when your code is done with the `BrowserContext`, and before
+        calling `browser.close()`. This will ensure the `context` is closed gracefully and any artifactsùlike HARs
+        and videosùare fully flushed and saved.
+    
+        **Usage**
+    
+        ```py
+        browser = await playwright.firefox.launch() # or \"chromium\" or \"webkit\".
+        # create a new incognito browser context.
+        context = await browser.new_context()
+        # create a new page in a pristine context.
+        page = await context.new_page()
+        await page.goto(\"https://example.com\")
+    
+        # gracefully close up everything
+        await context.close()
+        await browser.close()
+        ```
+    
+        ```py
+        browser = playwright.firefox.launch() # or \"chromium\" or \"webkit\".
+        # create a new incognito browser context.
+        context = browser.new_context()
+        # create a new page in a pristine context.
+        page = context.new_page()
+        page.goto(\"https://example.com\")
+    
+        # gracefully close up everything
+        context.close()
+        browser.close()
+        ```
+    
+        Parameters
+        ----------
+        viewport : Union[{width: int, height: int}, None]
+            Sets a consistent viewport for each page. Defaults to an 1280x720 viewport. `no_viewport` disables the fixed
+            viewport. Learn more about [viewport emulation](../emulation.md#viewport).
+        screen : Union[{width: int, height: int}, None]
+            Emulates consistent window screen size available inside web page via `window.screen`. Is only used when the
+            `viewport` is set.
+        no_viewport : Union[bool, None]
+            Does not enforce fixed viewport, allows resizing window in the headed mode.
+        ignore_https_errors : Union[bool, None]
+            Whether to ignore HTTPS errors when sending network requests. Defaults to `false`.
+        java_script_enabled : Union[bool, None]
+            Whether or not to enable JavaScript in the context. Defaults to `true`. Learn more about
+            [disabling JavaScript](../emulation.md#javascript-enabled).
+        bypass_csp : Union[bool, None]
+            Toggles bypassing page's Content-Security-Policy. Defaults to `false`.
+        user_agent : Union[str, None]
+            Specific user agent to use in this context.
+        locale : Union[str, None]
+            Specify user locale, for example `en-GB`, `de-DE`, etc. Locale will affect `navigator.language` value,
+            `Accept-Language` request header value as well as number and date formatting rules. Defaults to the system default
+            locale. Learn more about emulation in our [emulation guide](../emulation.md#locale--timezone).
+        timezone_id : Union[str, None]
+            Changes the timezone of the context. See
+            [ICU's metaZones.txt](https://cs.chromium.org/chromium/src/third_party/icu/source/data/misc/metaZones.txt?rcl=faee8bc70570192d82d2978a71e2a615788597d1)
+            for a list of supported timezone IDs. Defaults to the system timezone.
+        geolocation : Union[{latitude: float, longitude: float, accuracy: Union[float, None]}, None]
+        permissions : Union[List[str], None]
+            A list of permissions to grant to all pages in this context. See `browser_context.grant_permissions()` for
+            more details. Defaults to none.
+        extra_http_headers : Union[Dict[str, str], None]
+            An object containing additional HTTP headers to be sent with every request. Defaults to none.
+        offline : Union[bool, None]
+            Whether to emulate network being offline. Defaults to `false`. Learn more about
+            [network emulation](../emulation.md#offline).
+        http_credentials : Union[{username: str, password: str, origin: Union[str, None]}, None]
+            Credentials for [HTTP authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication). If no
+            origin is specified, the username and password are sent to any servers upon unauthorized responses.
+        device_scale_factor : Union[float, None]
+            Specify device scale factor (can be thought of as dpr). Defaults to `1`. Learn more about
+            [emulating devices with device scale factor](../emulation.md#devices).
+        is_mobile : Union[bool, None]
+            Whether the `meta viewport` tag is taken into account and touch events are enabled. isMobile is a part of device,
+            so you don't actually need to set it manually. Defaults to `false` and is not supported in Firefox. Learn more
+            about [mobile emulation](../emulation.md#ismobile).
+        has_touch : Union[bool, None]
+            Specifies if viewport supports touch events. Defaults to false. Learn more about
+            [mobile emulation](../emulation.md#devices).
+        color_scheme : Union["dark", "light", "no-preference", "null", None]
+            Emulates `'prefers-colors-scheme'` media feature, supported values are `'light'`, `'dark'`, `'no-preference'`. See
+            `page.emulate_media()` for more details. Passing `'null'` resets emulation to system defaults. Defaults to
+            `'light'`.
+        reduced_motion : Union["no-preference", "null", "reduce", None]
+            Emulates `'prefers-reduced-motion'` media feature, supported values are `'reduce'`, `'no-preference'`. See
+            `page.emulate_media()` for more details. Passing `'null'` resets emulation to system defaults. Defaults to
+            `'no-preference'`.
+        forced_colors : Union["active", "none", "null", None]
+            Emulates `'forced-colors'` media feature, supported values are `'active'`, `'none'`. See
+            `page.emulate_media()` for more details. Passing `'null'` resets emulation to system defaults. Defaults to
+            `'none'`.
+        accept_downloads : Union[bool, None]
+            Whether to automatically download all the attachments. Defaults to `true` where all the downloads are accepted.
+        proxy : Union[{server: str, bypass: Union[str, None], username: Union[str, None], password: Union[str, None]}, None]
+            Network proxy settings to use with this context. Defaults to none.
+    
+            **NOTE** For Chromium on Windows the browser needs to be launched with the global proxy for this option to work. If
+            all contexts override the proxy, global proxy will be never used and can be any string, for example `launch({
+            proxy: { server: 'http://per-context' } })`.
+        record_har_path : Union[pathlib.Path, str, None]
+            Enables [HAR](http://www.softwareishard.com/blog/har-12-spec) recording for all pages into the specified HAR file
+            on the filesystem. If not specified, the HAR is not recorded. Make sure to call `browser_context.close()`
+            for the HAR to be saved.
+        record_har_omit_content : Union[bool, None]
+            Optional setting to control whether to omit request content from the HAR. Defaults to `false`.
+        record_video_dir : Union[pathlib.Path, str, None]
+            Enables video recording for all pages into the specified directory. If not specified videos are not recorded. Make
+            sure to call `browser_context.close()` for videos to be saved.
+        record_video_size : Union[{width: int, height: int}, None]
+            Dimensions of the recorded videos. If not specified the size will be equal to `viewport` scaled down to fit into
+            800x800. If `viewport` is not configured explicitly the video size defaults to 800x450. Actual picture of each page
+            will be scaled down if necessary to fit the specified size.
+        storage_state : Union[pathlib.Path, str, {cookies: List[{name: str, value: str, domain: str, path: str, expires: float, httpOnly: bool, secure: bool, sameSite: Union["Lax", "None", "Strict"]}], origins: List[{origin: str, localStorage: List[{name: str, value: str}]}]}, None]
+            Learn more about [storage state and auth](../auth.md).
+    
+            Populates context with given storage state. This option can be used to initialize context with logged-in
+            information obtained via `browser_context.storage_state()`.
+        base_url : Union[str, None]
+            When using `page.goto()`, `page.route()`, `page.wait_for_url()`,
+            `page.expect_request()`, or `page.expect_response()` it takes the base URL in consideration by
+            using the [`URL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/URL) constructor for building the
+            corresponding URL. Unset by default. Examples:
+            - baseURL: `http://localhost:3000` and navigating to `/bar.html` results in `http://localhost:3000/bar.html`
+            - baseURL: `http://localhost:3000/foo/` and navigating to `./bar.html` results in
+              `http://localhost:3000/foo/bar.html`
+            - baseURL: `http://localhost:3000/foo` (without trailing slash) and navigating to `./bar.html` results in
+              `http://localhost:3000/bar.html`
+        strict_selectors : Union[bool, None]
+            If set to true, enables strict selectors mode for this context. In the strict selectors mode all operations on
+            selectors that imply single target DOM element will throw when more than one element matches the selector. This
+            option does not affect any Locator APIs (Locators are always strict). Defaults to `false`. See `Locator` to learn
+            more about the strict mode.
+        service_workers : Union["allow", "block", None]
+            Whether to allow sites to register Service workers. Defaults to `'allow'`.
+            - `'allow'`: [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) can be
+              registered.
+            - `'block'`: Playwright will block all registration of Service Workers.
+        record_har_url_filter : Union[Pattern[str], str, None]
+        record_har_mode : Union["full", "minimal", None]
+            When set to `minimal`, only record information necessary for routing from HAR. This omits sizes, timing, page,
+            cookies, security and other types of HAR information that are not used when replaying from HAR. Defaults to `full`.
+        record_har_content : Union["attach", "embed", "omit", None]
+            Optional setting to control resource content management. If `omit` is specified, content is not persisted. If
+            `attach` is specified, resources are persisted as separate files and all of these files are archived along with the
+            HAR file. Defaults to `embed`, which stores content inline the HAR file as per HAR specification.
+    
+        Returns
+        -------
+        BrowserContext
+        """
+    
+        return mapping.from_impl(
+>           self._sync(
+                self._impl_obj.new_context(
+                    viewport=viewport,
+                    screen=screen,
+                    noViewport=no_viewport,
+                    ignoreHTTPSErrors=ignore_https_errors,
+                    javaScriptEnabled=java_script_enabled,
+                    bypassCSP=bypass_csp,
+                    userAgent=user_agent,
+                    locale=locale,
+                    timezoneId=timezone_id,
+                    geolocation=geolocation,
+                    permissions=mapping.to_impl(permissions),
+                    extraHTTPHeaders=mapping.to_impl(extra_http_headers),
+                    offline=offline,
+                    httpCredentials=http_credentials,
+                    deviceScaleFactor=device_scale_factor,
+                    isMobile=is_mobile,
+                    hasTouch=has_touch,
+                    colorScheme=color_scheme,
+                    reducedMotion=reduced_motion,
+                    forcedColors=forced_colors,
+                    acceptDownloads=accept_downloads,
+                    defaultBrowserType=default_browser_type,
+                    proxy=proxy,
+                    recordHarPath=record_har_path,
+                    recordHarOmitContent=record_har_omit_content,
+                    recordVideoDir=record_video_dir,
+                    recordVideoSize=record_video_size,
+                    storageState=storage_state,
+                    baseURL=base_url,
+                    strictSelectors=strict_selectors,
+                    serviceWorkers=service_workers,
+                    recordHarUrlFilter=record_har_url_filter,
+                    recordHarMode=record_har_mode,
+                    recordHarContent=record_har_content,
+                )
+            )
+        )
+
+playwright_venv\Lib\site-packages\playwright\sync_api\_generated.py:14294: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Browser type=<BrowserType name=chromium executable_path=C:\Users\Y C VINAT\AppData\Local\ms-playwright\chromium-1091\chrome-win\chrome.exe> version=120.0.6099.28>
+viewport = None, screen = None, noViewport = True, ignoreHTTPSErrors = None
+javaScriptEnabled = None, bypassCSP = None, userAgent = None, locale = None
+timezoneId = None, geolocation = None, permissions = None
+extraHTTPHeaders = None, offline = None, httpCredentials = None
+deviceScaleFactor = 1.0, isMobile = None, hasTouch = None, colorScheme = None
+reducedMotion = None, forcedColors = None, acceptDownloads = None
+defaultBrowserType = None, proxy = None, recordHarPath = None
+recordHarOmitContent = None, recordVideoDir = None, recordVideoSize = None
+storageState = None, baseURL = None, strictSelectors = None
+serviceWorkers = None, recordHarUrlFilter = None, recordHarMode = None
+recordHarContent = None
+
+    async def new_context(
+        self,
+        viewport: ViewportSize = None,
+        screen: ViewportSize = None,
+        noViewport: bool = None,
+        ignoreHTTPSErrors: bool = None,
+        javaScriptEnabled: bool = None,
+        bypassCSP: bool = None,
+        userAgent: str = None,
+        locale: str = None,
+        timezoneId: str = None,
+        geolocation: Geolocation = None,
+        permissions: List[str] = None,
+        extraHTTPHeaders: Dict[str, str] = None,
+        offline: bool = None,
+        httpCredentials: HttpCredentials = None,
+        deviceScaleFactor: float = None,
+        isMobile: bool = None,
+        hasTouch: bool = None,
+        colorScheme: ColorScheme = None,
+        reducedMotion: ReducedMotion = None,
+        forcedColors: ForcedColors = None,
+        acceptDownloads: bool = None,
+        defaultBrowserType: str = None,
+        proxy: ProxySettings = None,
+        recordHarPath: Union[Path, str] = None,
+        recordHarOmitContent: bool = None,
+        recordVideoDir: Union[Path, str] = None,
+        recordVideoSize: ViewportSize = None,
+        storageState: Union[StorageState, str, Path] = None,
+        baseURL: str = None,
+        strictSelectors: bool = None,
+        serviceWorkers: ServiceWorkersPolicy = None,
+        recordHarUrlFilter: Union[Pattern[str], str] = None,
+        recordHarMode: HarMode = None,
+        recordHarContent: HarContentPolicy = None,
+    ) -> BrowserContext:
+        params = locals_to_params(locals())
+        await prepare_browser_context_params(params)
+    
+>       channel = await self._channel.send("newContext", params)
+
+playwright_venv\Lib\site-packages\playwright\_impl\_browser.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x0000023159F9CE30>
+method = 'newContext'
+params = {'deviceScaleFactor': 1.0, 'noDefaultViewport': True}
+
+    async def send(self, method: str, params: Dict = None) -> Any:
+>       return await self._connection.wrap_api_call(
+            lambda: self.inner_send(method, params, False)
+        )
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x0000023159B77DA0>
+cb = <function Channel.send.<locals>.<lambda> at 0x0000023159D27560>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        self._api_zone.set(_extract_stack_trace_information_from_stack(st, is_internal))
+        try:
+>           return await cb()
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Channel object at 0x0000023159F9CE30>
+method = 'newContext'
+params = {'deviceScaleFactor': 1.0, 'noDefaultViewport': True}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -> Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(
+            self._object, method, params
+        )
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+>       result = next(iter(done)).result()
+E       playwright._impl._errors.Error: "deviceScaleFactor" option is not supported with null "viewport"
+
+playwright_venv\Lib\site-packages\playwright\_impl\_connection.py:100: Error
+---------------------------- Captured stderr setup ----------------------------
+2025-12-04 17:48:20,812 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.address`.
+2025-12-04 17:48:20,814 - faker.factory - DEBUG - Provider `faker.providers.address` has been localized to `en_US`.
+2025-12-04 17:48:20,814 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.automotive`.
+2025-12-04 17:48:20,816 - faker.factory - DEBUG - Provider `faker.providers.automotive` has been localized to `en_US`.
+2025-12-04 17:48:20,816 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.bank`.
+2025-12-04 17:48:20,817 - faker.factory - DEBUG - Specified locale `en_US` is not available for provider `faker.providers.bank`. Locale reset to `en_GB` for this provider.
+2025-12-04 17:48:20,817 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.barcode`.
+2025-12-04 17:48:20,817 - faker.factory - DEBUG - Provider `faker.providers.barcode` has been localized to `en_US`.
+2025-12-04 17:48:20,818 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.color`.
+2025-12-04 17:48:20,818 - faker.factory - DEBUG - Provider `faker.providers.color` has been localized to `en_US`.
+2025-12-04 17:48:20,818 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.company`.
+2025-12-04 17:48:20,820 - faker.factory - DEBUG - Provider `faker.providers.company` has been localized to `en_US`.
+2025-12-04 17:48:20,820 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.credit_card`.
+2025-12-04 17:48:20,820 - faker.factory - DEBUG - Provider `faker.providers.credit_card` has been localized to `en_US`.
+2025-12-04 17:48:20,820 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.currency`.
+2025-12-04 17:48:20,821 - faker.factory - DEBUG - Provider `faker.providers.currency` has been localized to `en_US`.
+2025-12-04 17:48:20,821 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.date_time`.
+2025-12-04 17:48:20,822 - faker.factory - DEBUG - Provider `faker.providers.date_time` has been localized to `en_US`.
+2025-12-04 17:48:20,822 - faker.factory - DEBUG - Provider `faker.providers.emoji` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 17:48:20,822 - faker.factory - DEBUG - Provider `faker.providers.file` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+.\playwright_venv\Scripts\py
+thon.exe : 2025-12-04 
+17:48:21,811 - conftest - 
+INFO - =====================
+============================
+============================
+===
+At line:1 char:1
++ .\playwright_venv\Scripts\
+python.exe -m pytest 
+tests/test_auth.py::Te ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (2025-  
+  12-04 17:4...==========   
+ =====:String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+2025-12-04 17:48:21,812 - 
+conftest - INFO - Test 
+Suite Execution Completed
+2025-12-04 17:48:21,812 - 
+conftest - INFO - ==========
+============================
+============================
+==============
+2025-12-04 17:48:20,822 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.geo`.
+2025-12-04 17:48:20,823 - faker.factory - DEBUG - Provider `faker.providers.geo` has been localized to `en_US`.
+2025-12-04 17:48:20,823 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.internet`.
+2025-12-04 17:48:20,825 - faker.factory - DEBUG - Provider `faker.providers.internet` has been localized to `en_US`.
+2025-12-04 17:48:20,825 - faker.factory - DEBUG - Provider `faker.providers.isbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 17:48:20,825 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.job`.
+2025-12-04 17:48:20,826 - faker.factory - DEBUG - Provider `faker.providers.job` has been localized to `en_US`.
+2025-12-04 17:48:20,826 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.lorem`.
+2025-12-04 17:48:20,826 - faker.factory - DEBUG - Provider `faker.providers.lorem` has been localized to `en_US`.
+2025-12-04 17:48:20,827 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.misc`.
+2025-12-04 17:48:20,827 - faker.factory - DEBUG - Provider `faker.providers.misc` has been localized to `en_US`.
+2025-12-04 17:48:20,827 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.passport`.
+2025-12-04 17:48:20,827 - faker.factory - DEBUG - Provider `faker.providers.passport` has been localized to `en_US`.
+2025-12-04 17:48:20,827 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.person`.
+2025-12-04 17:48:20,830 - faker.factory - DEBUG - Provider `faker.providers.person` has been localized to `en_US`.
+2025-12-04 17:48:20,830 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.phone_number`.
+2025-12-04 17:48:20,832 - faker.factory - DEBUG - Provider `faker.providers.phone_number` has been localized to `en_US`.
+2025-12-04 17:48:20,832 - faker.factory - DEBUG - Provider `faker.providers.profile` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 17:48:20,832 - faker.factory - DEBUG - Provider `faker.providers.python` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 17:48:20,832 - faker.factory - DEBUG - Provider `faker.providers.sbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 17:48:20,833 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.ssn`.
+2025-12-04 17:48:20,834 - faker.factory - DEBUG - Provider `faker.providers.ssn` has been localized to `en_US`.
+2025-12-04 17:48:20,834 - faker.factory - DEBUG - Provider `faker.providers.user_agent` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-12-04 17:48:20,835 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-12-04 17:48:21,530 - conftest - INFO - Browser launched: Chromium (Headless=False, SlowMo=800ms)
+----------------------------- Captured log setup ------------------------------
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.address`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.address` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.automotive`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.automotive` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.bank`.
+DEBUG    faker.factory:factory.py:86 Specified locale `en_US` is not available for provider `faker.providers.bank`. Locale reset to `en_GB` for this provider.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.barcode`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.barcode` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.color`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.color` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.company`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.company` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.credit_card`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.credit_card` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.currency`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.currency` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.date_time`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.date_time` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.emoji` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.file` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.geo`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.geo` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.internet`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.internet` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.isbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.job`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.job` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.lorem`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.lorem` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.misc`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.misc` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.passport`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.passport` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.person`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.person` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.phone_number`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.phone_number` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.profile` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.python` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.sbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.ssn`.
+DEBUG    faker.factory:factory.py:95 Provider `faker.providers.ssn` has been localized to `en_US`.
+DEBUG    faker.factory:factory.py:106 Provider `faker.providers.user_agent` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+DEBUG    asyncio:proactor_events.py:634 Using proactor: IocpProactor
+INFO     conftest:conftest.py:87 Browser launched: Chromium (Headless=False, SlowMo=800ms)
+=========================== short test summary info ===========================
+ERROR tests/test_auth.py::TestLoginPageElements::test_login_page_loads_successfully
+============================== 1 error in 1.02s ===============================
